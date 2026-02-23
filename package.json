@@ -1,6 +1,6 @@
 {
   "name": "capacitor-ad-slots",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Slot-based AdMob for Capacitor apps — define ad slots once, trigger programmatically anywhere",
   "type": "module",
   "main": "./dist/index.js",
