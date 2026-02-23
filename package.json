@@ -1,0 +1,60 @@
+{
+  "name": "capacitor-ad-slots",
+  "version": "1.0.0",
+  "description": "Slot-based AdMob for Capacitor apps — define ad slots once, trigger programmatically anywhere",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./vue": {
+      "types": "./dist/vue/index.d.ts",
+      "import": "./dist/vue/index.js",
+      "default": "./dist/vue/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts src/vue/index.ts --format esm --dts --clean",
+    "prepublishOnly": "pnpm run build"
+  },
+  "keywords": [
+    "capacitor",
+    "admob",
+    "ads",
+    "slot",
+    "mobile",
+    "ionic"
+  ],
+  "author": "Darko Hadji-Nikolov",
+  "license": "MIT",
+  "dependencies": {
+    "@vue/reactivity": "^3.4.0"
+  },
+  "peerDependencies": {
+    "@capacitor/core": "^5.0.0 || ^6.0.0",
+    "@capacitor-community/admob": "^5.0.0 || ^6.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/core": "^6.1.0",
+    "@capacitor-community/admob": "^6.2.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "vue": "^3.4.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darkohadj/capacitor-ad-slots"
+  }
+}
