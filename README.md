@@ -21,25 +21,25 @@ pnpm add capacitor-ad-slots @capacitor-community/admob @capacitor/core
 In your main entry (e.g. `main.ts`):
 
 ```ts
-import { defineSlots } from 'capacitor-ad-slots';
+import { defineSlots } from "capacitor-ad-slots";
 
 defineSlots({
   // Banner at bottom of game screen
-  'game-banner-bottom': {
-    type: 'banner',
-    adId: 'ca-app-pub-XXXXX/YYYYY',
-    position: 'bottom',
-    size: 'adaptive',
+  "game-banner-bottom": {
+    type: "banner",
+    adId: "ca-app-pub-XXXXX/YYYYY",
+    position: "bottom",
+    size: "adaptive",
   },
   // Interstitial after win
-  'win-interstitial': {
-    type: 'interstitial',
-    adId: 'ca-app-pub-XXXXX/ZZZZZ',
+  "win-interstitial": {
+    type: "interstitial",
+    adId: "ca-app-pub-XXXXX/ZZZZZ",
   },
   // Rewarded ad for hints
-  'hint-rewarded': {
-    type: 'rewarded',
-    adId: 'ca-app-pub-XXXXX/AAAAA',
+  "hint-rewarded": {
+    type: "rewarded",
+    adId: "ca-app-pub-XXXXX/AAAAA",
   },
 });
 ```
@@ -47,11 +47,11 @@ defineSlots({
 ### 2. Initialize (with UMP consent)
 
 ```ts
-import { initialize } from 'capacitor-ad-slots';
+import { initialize } from "capacitor-ad-slots";
 
 await initialize({
-  testingDevices: ['YOUR_DEVICE_ID'],
-  consentDebugGeography: 'NOT_EEA',
+  testingDevices: ["YOUR_DEVICE_ID"],
+  consentDebugGeography: "NOT_EEA",
 });
 ```
 
@@ -61,19 +61,19 @@ await initialize({
 
 ```vue
 <script setup>
-import { useAdSlots } from 'capacitor-ad-slots/vue';
+import { useAdSlots } from "capacitor-ad-slots/vue";
 
 const ads = useAdSlots();
 
 onMounted(() => {
-  if (ads.shouldShowAds()) ads.show('game-banner-bottom');
+  if (ads.shouldShowAds()) ads.show("game-banner-bottom");
 });
 onUnmounted(() => {
-  ads.hide('game-banner-bottom');
+  ads.hide("game-banner-bottom");
 });
 
 function onWin() {
-  ads.trigger('win-interstitial');
+  ads.trigger("win-interstitial");
 }
 </script>
 ```
@@ -81,21 +81,21 @@ function onWin() {
 **Vanilla / framework-agnostic:**
 
 ```ts
-import { show, hide, trigger, shouldShowAds } from 'capacitor-ad-slots';
+import { show, hide, trigger, shouldShowAds } from "capacitor-ad-slots";
 
-if (shouldShowAds()) show('game-banner-bottom');
+if (shouldShowAds()) show("game-banner-bottom");
 // later
-hide('game-banner-bottom');
-trigger('win-interstitial');
+hide("game-banner-bottom");
+trigger("win-interstitial");
 ```
 
 ## Slot Types
 
-| Type | Config | Methods |
-|------|--------|---------|
-| `banner` | `adId`, `position?` ('top'\|'bottom'), `size?`, `margin?` | `show()`, `hide()`, `remove()` |
-| `interstitial` | `adId` | `trigger()` |
-| `rewarded` | `adId` | `triggerRewarded()` → `Promise<{ amount, type } \| null>` |
+| Type           | Config                                                    | Methods                                                   |
+| -------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| `banner`       | `adId`, `position?` ('top'\|'bottom'), `size?`, `margin?` | `show()`, `hide()`, `remove()`                            |
+| `interstitial` | `adId`                                                    | `trigger()`                                               |
+| `rewarded`     | `adId`                                                    | `triggerRewarded()` → `Promise<{ amount, type } \| null>` |
 
 ## API Reference
 
@@ -130,16 +130,8 @@ trigger('win-interstitial');
 interface AdSlotsInitOptions {
   testingDevices?: string[];
   initializeForTesting?: boolean;
-  consentDebugGeography?: 'EEA' | 'NOT_EEA' | 'DISABLED';
+  consentDebugGeography?: "EEA" | "NOT_EEA" | "DISABLED";
   consentTestDevices?: string[];
-  isTesting?: boolean;  // Global test mode for all slots
+  isTesting?: boolean; // Global test mode for all slots
 }
 ```
-
-## Publishing to npm
-
-1. Update `package.json` with your name, repository, etc.
-2. `npm login`
-3. `npm publish` (or `pnpm publish`)
-
-For scoped packages: `npm publish --access public`
